@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from "@angular/common/http";
-import { combineLatest, map, switchMap, tap } from "rxjs";
-import { RepositoryResponse, SearchUserResponse, SearchUserUserResponse } from "../models/search-user-response.model";
-import { searchStore } from "../store/search.store";
-import { mapResponseToRepositoryList, mapResponseToUserList, mapResponseUserToUser } from "../factory/search.factory";
+import { map, switchMap, tap } from "rxjs";
+import { RepositoryResponse, ListUserResponse, ListUserUserResponse } from "../models/list-user-response.model";
+import { listStore } from "../store/list.store";
+import { mapResponseToRepositoryList, mapResponseToUserList, mapResponseUserToUser } from "../factory/list.factory";
 import { User } from "../models/user.model";
 
 @Injectable({
@@ -13,7 +13,7 @@ export class SearchService {
     private static readonly BASE_URL = 'https://api.github.com';
     private static readonly MAX_RESULTS = 10;
 
-    private readonly searchStore = searchStore;
+    private readonly listStore = listStore;
 
     constructor(private readonly http: HttpClient) { }
 
@@ -24,18 +24,18 @@ export class SearchService {
             .set('page', page)
             .set('per_page', SearchService.MAX_RESULTS);
 
-        return this.http.get<SearchUserResponse>(url, { params }).pipe(
+        return this.http.get<ListUserResponse>(url, { params }).pipe(
             // This could be done in the last `tap` if map returns all data, but I think this could be extracted
             // in an external method, so we can update pagination apart from response entity model
             tap((response) => {
-                this.searchStore.update((state) => ({
+                this.listStore.update((state) => ({
                     ...state,
                     totalCount: response.total_count,
                 }))
             }),
             map(mapResponseToUserList),
             tap((users: User[]) => {
-                this.searchStore.update((state) => ({
+                this.listStore.update((state) => ({
                     ...state,
                     currentPage: page,
                     users,
@@ -47,7 +47,7 @@ export class SearchService {
     getUserByLogin(userLogin: string) {
         const url = `${SearchService.BASE_URL}/users/${userLogin}`;
 
-        return this.http.get<SearchUserUserResponse>(url).pipe(
+        return this.http.get<ListUserUserResponse>(url).pipe(
             map(mapResponseUserToUser),
             switchMap((user) => {
                 return this.getRepositories(user.login).pipe(
@@ -58,7 +58,7 @@ export class SearchService {
                 )
             }),
             tap((user: User) => {
-                this.searchStore.update((state) => ({
+                this.listStore.update((state) => ({
                     ...state,
                     selectedUser: user,
                 }))

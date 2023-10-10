@@ -1,9 +1,9 @@
-export type SearchUserResponse = {
+export type ListUserResponse = {
     total_count: number,
-    items: SearchUserUserResponse[],
+    items: ListUserUserResponse[],
 }
 
-export type SearchUserUserResponse = {
+export type ListUserUserResponse = {
     avatar_url: string,
     id: number,
     login: string,

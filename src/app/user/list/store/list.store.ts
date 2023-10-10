@@ -9,7 +9,7 @@ export type StoreState = {
     selectedUser: User | null,
 }
 
-export class SearchStore extends Store<StoreState> {
+export class ListStore extends Store<StoreState> {
     get currentPage() {
         return this.signal().currentPage;
     }
@@ -34,7 +34,7 @@ export class SearchStore extends Store<StoreState> {
     }
 }
 
-export const searchStore = new SearchStore({
+export const listStore = new ListStore({
     currentPage: 1,
     totalCount: 0,
     users: [],

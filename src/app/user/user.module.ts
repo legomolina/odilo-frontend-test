@@ -1,25 +1,27 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { HomeRoutingModule } from './home-routing.module';
-import { SearchComponent } from './search/search.component';
+
 import { FormsModule } from "@angular/forms";
 import { SharedModule } from "../shared/shared.module";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
-import { ViewComponent } from './view/view.component';
+import { UserRoutingModule } from "./user-routing.module";
+import { ListComponent } from './list/list.component';
+import { ViewComponent } from "./view/view.component";
 
 
 @NgModule({
     declarations: [
-        SearchComponent,
-        ViewComponent
+        ListComponent,
+        ViewComponent,
+        ListComponent
     ],
     imports: [
         CommonModule,
-        HomeRoutingModule,
+        UserRoutingModule,
         FormsModule,
         SharedModule,
         FontAwesomeModule,
         NgOptimizedImage
     ]
 })
-export class HomeModule { }
+export class UserModule { }

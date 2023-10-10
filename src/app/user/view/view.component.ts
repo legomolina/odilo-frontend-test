@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import { searchStore } from "../search/store/search.store";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { ModalService } from "../../core/services/modal/modal.service";
+import { listStore } from "../list/store/list.store";
 
 @Component({
     selector: 'app-view',
@@ -12,7 +12,7 @@ import { ModalService } from "../../core/services/modal/modal.service";
 export class ViewComponent {
     readonly githubIcon = faGithub;
     readonly starIcon = faStar;
-    readonly searchStore = searchStore;
+    readonly listStore = listStore;
 
     constructor(private readonly modalService: ModalService) {
     }
@@ -22,6 +22,6 @@ export class ViewComponent {
     }
 
     handleGoToGithubProfile() {
-        window.open(this.searchStore.selectedUser?.url, '_blank');
+        window.open(this.listStore.selectedUser?.url, '_blank');
     }
 }

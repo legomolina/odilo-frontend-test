@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="content" *ngIf="searchStore.selectedUser as user">
+    <div class="content" *ngIf="listStore.selectedUser as user">
         <div class="header">
             <div class="avatar">
                 <img [ngSrc]="user.avatarUrl" [alt]="user.login" width="75" height="75">
@@ -9,7 +9,7 @@
         </div>
 
         <ng-container *ngIf="user.repositories && user.repositories.length > 0">
-            <h4>{{ user.repositories?.length }} repositories</h4>
+            <h4>{{ user.repositories.length }} repositories</h4>
 
             <!-- Should componentize this but for sake of simplicity just render it here -->
             <ul>

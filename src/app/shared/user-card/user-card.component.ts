@@ -1,7 +1,7 @@
 import { Component, ElementRef, Input, signal, ViewChild } from '@angular/core';
 import ColorThief from 'colorthief';
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import { User } from "../../home/search/models/user.model";
+import { User } from "../../user/list/models/user.model";
 
 @Component({
     selector: 'app-user-card',

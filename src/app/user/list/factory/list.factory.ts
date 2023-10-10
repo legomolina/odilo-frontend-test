@@ -1,8 +1,8 @@
-import { RepositoryResponse, SearchUserResponse, SearchUserUserResponse } from "../models/search-user-response.model";
+import { RepositoryResponse, ListUserResponse, ListUserUserResponse } from "../models/list-user-response.model";
 import { User } from "../models/user.model";
 import { Repository } from "../models/repository.model";
 
-export const mapResponseToUserList = (response: SearchUserResponse): User[] => {
+export const mapResponseToUserList = (response: ListUserResponse): User[] => {
     return response.items.map(mapResponseUserToUser);
 }
 
@@ -17,7 +17,7 @@ export const mapResponseToRepositoryList = (response: RepositoryResponse): Repos
     }));
 }
 
-export const mapResponseUserToUser = (responseUser: SearchUserUserResponse): User => {
+export const mapResponseUserToUser = (responseUser: ListUserUserResponse): User => {
     return ({
         avatarUrl: responseUser.avatar_url,
         id: responseUser.id,
