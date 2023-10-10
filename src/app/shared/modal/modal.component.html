@@ -1,0 +1,18 @@
+<div *ngIf="show" @fadeIn @fadeOut (@fadeOut.done)="fadeOutDone($event)" class="modal">
+    <div class="backdrop"></div>
+
+    <div class="container">
+        <header>
+            <h3 class="title">{{ title }}</h3>
+            <button class="close" (click)="dismiss()">
+                <fa-icon [icon]="closeIcon" size="2x"></fa-icon>
+            </button>
+        </header>
+
+        <main>
+            <div class="content">
+                <template #modalContent></template>
+            </div>
+        </main>
+    </div>
+</div>

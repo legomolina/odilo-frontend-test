@@ -1,0 +1,39 @@
+<div class="container">
+    <header>
+        <h1>GitHub users</h1>
+
+        <div class="search-input">
+            <app-search-input (search)="handleSearch($event)">
+                Search
+            </app-search-input>
+        </div>
+    </header>
+
+    <main>
+        <div *ngFor="let user of this.searchStore.users">
+            <app-user-card (click)="handleUserClick(user)" [user]="user"></app-user-card>
+        </div>
+
+        <app-no-results *ngIf="this.searchStore.users.length === 0">
+            No results found
+        </app-no-results>
+    </main>
+
+    <footer>
+        <app-paginator *ngIf="searchStore.totalPages() > 1">
+            <app-paginator-button (click)="loadPage(this.searchStore.currentPage - 1)">
+                <fa-icon [icon]="backIcon"></fa-icon>
+            </app-paginator-button>
+
+            <app-paginator-button *ngFor="let page of paginatorPages"
+                                  [selected]="page === this.searchStore.currentPage"
+                                  (click)="loadPage(page)">
+                {{ page }}
+            </app-paginator-button>
+
+            <app-paginator-button (click)="loadPage(this.searchStore.currentPage + 1)">
+                <fa-icon [icon]="nextIcon"></fa-icon>
+            </app-paginator-button>
+        </app-paginator>
+    </footer>
+</div>

@@ -1,0 +1,29 @@
+:host {
+    --width: 100%;
+}
+
+input {
+    display: block;
+    width: var(--width);
+
+    padding: 15px 20px;
+
+    border: 1px solid var(--dark-light-color);
+    border-radius: 10px;
+    outline: none;
+
+    background-color: var(--background-light-color);
+
+    color: var(--text-color);
+    font-size: 16px;
+
+    transition: all .2s;
+
+    &::placeholder {
+        color: var(--text-muted-color);
+    }
+
+    &:active, &:focus, &:hover {
+        border-color: var(--accent-color);
+    }
+}

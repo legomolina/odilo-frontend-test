@@ -1,0 +1,79 @@
+.container {
+    display: flex;
+    flex-flow: column nowrap;
+    height: 100%;
+}
+
+header {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    row-gap: 15px;
+
+    padding: 15px 50px;
+
+    border-bottom: 1px solid var(--dark-color);
+
+    @media screen and (max-width: 492px) {
+        padding: 15px;
+    }
+
+    h1 {
+        margin: 0;
+    }
+
+    .search-input {
+        width: 300px;
+        max-width: 100%;
+
+        margin: 0;
+
+        @media screen and (max-width: 492px) {
+            margin: auto;
+        }
+    }
+}
+
+main {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(265px, 350px));
+    justify-content: center;
+    align-content: start;
+    flex: 1 0 0;
+
+    padding: 15px 50px;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    @media screen and (max-width: 492px) {
+        padding: 15px;
+    }
+
+    app-user-card {
+        --width: 100%;
+    }
+}
+
+footer {
+    display: grid;
+    place-content: center;
+    height: 75px;
+
+    margin-top: auto;
+    padding: 0 50px;
+
+    background-color: var(--background-light-color);
+
+    @media screen and (max-width: 492px) {
+        padding: 0 15px;
+    }
+
+    // Remove < and > buttons from paginator on mobile devices. Maybe should left them and remove 2 numbers...
+    app-paginator-button:first-child, app-paginator-button:last-child {
+        @media screen and (max-width: 492px) {
+            display: none;
+        }
+    }
+}

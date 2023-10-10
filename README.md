@@ -1,27 +1,44 @@
 # OdiloFrontedTest
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.4.
+## Prueba
 
-## Development server
+Se ha implementado una página base `search` que contiene un header con la barra de búsqueda y luego un grid responsive con los resultados.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+También hay un footer con un paginador para obtener más resultados si hubiese más de una página.
 
-## Code scaffolding
+Se ha usado un interceptor pero en vez de para peticiones erróneas, para añadir la cabecera de autenticación con la API_KEY, en el archivo `environment`.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Cuando se hace click en un usuario, tal como se especifica, si tiene una score > 20 carga el perfil en una pestaña nueva y, además, se abre un modal con (en vez de un gráfico) un listado de los primeros 5 repositorios de la api.
 
-## Build
+## Consideraciones
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Diseño y librerías externasl
 
-## Running unit tests
+Para elaborar el diseño no se ha usado ninguna librería ni framework CSS ni diseño de Figma.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Librerías usadas:
+ - `ColorThief` para obtener el color del avatar en los cards de los usuarios. (https://www.npmjs.com/package/colorthief) 
+ - `angular-fontawesome` para los iconos. (https://www.npmjs.com/package/@fortawesome/angular-fontawesome)
 
-## Running end-to-end tests
+### Linting
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Se ha añadido angular-eslint para lintear el código y tenerlo todo igual. Se puede ajustar más en profundidad incluyendo más reglas en el archivo de configuración.
 
-## Further help
+### Store
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+En vez de usar una store tipo rx-js, ng-xs o Akita he probado a usar `signals`, la nueva forma de reactividad introducida a parti de Angular 16.
+
+En vez de crear reducers, actions, effects etc he creado una clase base `Store` que usa un signal como base y con eso obtengo la reactividad. No creo que en un entorno de producción sea aconsejable implementarlo pero funciona perfectamente y ya he visto alguna librería que hace algo similar.
+
+La idea de esto es seguir una metodología más ágil como podemos encontrar en otros frameworks.
+
+### Componentes
+
+Aunque he componentizado ciertas cosas, me he dejado otras que por ámbito y tiempo tampoco he creído necesario (he hecho anotaciones en el código).
+
+El módulo `shared` incluye componentes reusables en el resto de módulos.
+El módulo `core` incluye servicios y utilidades comunes para todo el código
+
+### Commits
+
+Me he enfrascado demasiado en programar y no he hecho commits, fallo mío.

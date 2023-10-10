@@ -1,0 +1,82 @@
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10000;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+
+    .backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 10010;
+
+        width: 100%;
+        height: 100%;
+
+        background-color: color-mix(in srgb, var(--dark-color) 100%, transparent 70%);
+        backdrop-filter: blur(2px);
+    }
+
+    .container {
+        position: relative;
+        z-index: 10020;
+
+        width: 400px;
+        height: 550px;
+
+        max-width: 100%;
+        max-height: 100%;
+
+        border: 1px solid var(--dark-light-color);
+        border-radius: 10px;
+
+        background-color: var(--background-light-color);
+
+        header {
+            position: relative;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            height: 60px;
+
+            padding: 0 20px;
+
+            h3 {
+                margin: 0;
+                font-weight: 600;
+            }
+
+            .close {
+                position: absolute;
+                right: 20px;
+
+                border: none;
+                outline: none;
+
+                background-color: transparent;
+                color: var(--text-color);
+            }
+        }
+
+        main {
+            display: flex;
+            height: calc(100% - 60px);
+            overflow: hidden;
+
+            .content {
+                width: 100%;
+                padding: 20px;
+                overflow-y: auto;
+            }
+        }
+    }
+}

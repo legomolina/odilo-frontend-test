@@ -1,0 +1,24 @@
+<a [href]="user.url" title="Go to GitHub profile" target="_blank" (click)="handleClick($event)">
+    <article>
+        <div class="header" [style.--image-color]="headerColor()">
+            <div class="github-link" [style.--github-color]="githubColor()">
+                <fa-icon [icon]="github" size="2x" class="github-icon"></fa-icon>
+            </div>
+
+            <div class="avatar">
+                <img #avatarImage
+                     [ngSrc]="user.avatarUrl"
+                     [alt]="user.login"
+                     width="75"
+                     height="75"
+                     crossorigin="anonymous"
+                     (load)="handleLoad()">
+            </div>
+        </div>
+
+        <div class="content">
+            <h3>{{ user.login }}</h3>
+            <span class="score">Score: {{ user.score }}</span>
+        </div>
+    </article>
+</a>
